@@ -1,38 +1,395 @@
-.App {
-  text-align: center;
+@font-face {
+    font-family: "Exo 2";
+    src: url("assets/fonts/Exo2.0-Thin.otf") format("opentype");
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+/* reset */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body {
+    line-height: 1;
 }
 
-.App-link {
-  color: #61dafb;
+ol,
+ul {
+    list-style: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* styles */
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.44)), url(assets/img/bg.png) center/cover;
+}
+
+
+/* fonts */
+
+.heading {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 36px;
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+}
+
+.item {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.item h2 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.item h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.item h4 {
+    font-size: 16px;
+    color: #666666;
+}
+
+.item__content p {
+    font-size: 14px;
+    color: #666666;
+    margin-top: 20px;
+}
+
+.item__content p strong {
+    font-weight: bold;
+}
+
+
+/* items */
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item {
+    width: 320px;
+    height: 509px;
+    margin: 40px;
+    position: relative;
+}
+
+.item:not(.disabled) .item__content {
+    cursor: pointer;
+}
+
+.item__content {
+    width: 312px;
+    height: 472px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+
+.cat {
+    position: absolute;
+    bottom: -92px;
+    left: -30px;
+}
+
+.about {
+    position: absolute;
+    top: 17px;
+    left: 39px;
+}
+
+.description {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 13px;
+    text-align: center;
+    color: white;
+}
+
+.description span {
+    color: #1698D9;
+}
+
+.description span span {
+    cursor: pointer;
+    border-bottom: 1px dashed #1698D9;
+}
+
+.round {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #FFFFFF;
+}
+
+.round .weight {
+    font-size: 42px;
+}
+
+.round .kg {
+    font-size: 22px;
+}
+
+
+/* states */
+
+.item.default g use {
+    stroke: #1698D9;
+    fill: #FFFFFF;
+}
+
+.item.default .item__content:hover g use {
+    stroke: #2EA8E6;
+    fill: #FFFFFF;
+}
+
+.item.default .__default {
+    display: block !important;
+}
+
+.item.default .round {
+    background: #1698D9;
+}
+
+.item.default .item__content:hover .round {
+    background: #2EA8E6;
+}
+
+.item.default:hover .description span {
+    color: #2EA8E6;
+}
+
+.item.default:hover .description span span {
+    border-bottom: 1px dashed #2EA8E6;
+}
+
+.item.selected g use {
+    stroke: #D91667;
+    fill: #FFFFFF;
+}
+
+.item.selected .item__content:hover g use {
+    stroke: #E52E7A;
+    fill: #FFFFFF;
+}
+
+.item.selected .__selected {
+    display: block !important;
+}
+
+.item.selected .round {
+    background: #D91667;
+}
+
+.item.selected .item__content:hover .round {
+    background: #E52E7A;
+}
+
+.item.disabled g use {
+    stroke: #B3B3B3;
+    fill: #F2F2F2;
+}
+
+.item.disabled .__disabled {
+    display: block !important;
+    color: #FFFF66;
+}
+
+.item.disabled .cat {
+    opacity: .5;
+}
+
+.item.disabled .item__content * :not(span) {
+    color: black;
+    opacity: .5;
+}
+
+.item.disabled .round {
+    background: #B3B3B3;
+    opacity: 1 !important;
+}
+
+.selectedHover {
+    display: none;
+}
+
+.selectedOut:hover h4 {
+    display: none;
+}
+
+.selectedOut:hover .selectedHover {
+    display: unset;
+    color: #E52E7A;
+}
+
+
+/* media */
+
+@media (max-width: 800px) {
+    .item {
+        margin: 30px;
+    }
+    .heading {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .item {
+        margin: 20px 15px;
+    }
+    .heading {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 350px) {
+    .item {
+        margin: 20px 0px;
+    }
 }
